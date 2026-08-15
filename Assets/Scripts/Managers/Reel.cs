@@ -43,4 +43,9 @@ public class Reel : MonoBehaviour
     {
         isSpinning = false;
     }
+
+    public Sprite GetCurrentSymbol()
+    {
+         return image.sprite;
+    }
 }

@@ -34,5 +34,23 @@ public class GameManager : MonoBehaviour
         // 0.5秒後に3つ目停止
         yield return new WaitForSeconds(0.5f);
         reel3.StopSpin();
+
+        CheckResult();
+    }
+
+    void CheckResult()
+    {
+        Sprite symbol2 = reel2.GetCurrentSymbol();
+        Sprite symbol3 = reel3.GetCurrentSymbol();
+        Sprite symbol1 = reel1.GetCurrentSymbol();
+    
+        if (symbol1 == symbol2 && symbol2 == symbol3)
+        {
+            Debug.Log("🎉 当たり！");
+        }
+        else
+        {
+            Debug.Log("❌ ハズレ！");
+        }
     }
 }
