@@ -1,16 +1,38 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using System.Collections;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Reel reel1;
+    public Reel reel2;
+    public Reel reel3;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            StartCoroutine(SlotStart());
+        }
+    }
+
+    IEnumerator SlotStart()
+    {
+        // 3つ同時に回す
+        reel1.StartSpin();
+        reel2.StartSpin();
+        reel3.StartSpin();
+
+        // 1秒後に1つ目停止
+        yield return new WaitForSeconds(1.0f);
+        reel1.StopSpin();
+
+        // 0.5秒後に2つ目停止
+        yield return new WaitForSeconds(0.5f);
+        reel2.StopSpin();
+
+        // 0.5秒後に3つ目停止
+        yield return new WaitForSeconds(0.5f);
+        reel3.StopSpin();
     }
 }
