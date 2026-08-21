@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     // スロット画面
     public GameObject slotGame;
+    // 親
+    public GameObject parentImage;
 
     void Update()
     {
@@ -19,11 +21,17 @@ public class GameManager : MonoBehaviour
             StartCoroutine(SlotStart());
         }
 
-        // Shiftキー → スロット画面ON/OFF
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            slotGame.SetActive(!slotGame.activeSelf);
-        }
+        // Enterキー → スロット画面ON/OFF
+         if (Keyboard.current.enterKey.wasPressedThisFrame)
+         {
+             slotGame.SetActive(!slotGame.activeSelf);
+         }
+
+         // Pキー → 親の表示ON/OFF（テスト用）
+         if (Keyboard.current.pKey.wasPressedThisFrame)
+         {
+             parentImage.SetActive(!parentImage.activeSelf);
+         }
     }
 
     IEnumerator SlotStart()
