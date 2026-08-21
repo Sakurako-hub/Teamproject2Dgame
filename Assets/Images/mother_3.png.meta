@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6ea2f1c4f15dc40dfb310396092eaaf4
+guid: 0c6bd10c7b9da4b398fce9d96fef234e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -400466412795314241
-    second: Switch_Gray_0
+      213: 8527830919227901815
+    second: mother_3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Switch_Gray_0
+      name: mother_3_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 305
         y: 0
-        width: 2048
-        height: 2048
+        width: 623
+        height: 1104
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fbf3cd85be1417af0800000000000000
-      internalID: -400466412795314241
+      spriteID: 7770c25e901f85670800000000000000
+      internalID: 8527830919227901815
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Switch_Gray_0: -400466412795314241
+      mother_3_0: 8527830919227901815
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

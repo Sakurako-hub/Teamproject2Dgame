@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4bd94f28a03b34f38b1782845f614e56
+guid: 1a16b1ac7e5234b49a41f92073090833
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6668769106432881602
-    second: Switch_Controller_RedBlue_0
+      213: 4362485133543873051
+    second: mother_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Switch_Controller_RedBlue_0
+      name: mother_2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        x: 363
+        y: 2
+        width: 552
+        height: 1090
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c3f70e6b2a3c8c50800000000000000
-      internalID: 6668769106432881602
+      spriteID: b1a1ec29d19aa8c30800000000000000
+      internalID: 4362485133543873051
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Switch_Controller_RedBlue_0: 6668769106432881602
+      mother_2_0: 4362485133543873051
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

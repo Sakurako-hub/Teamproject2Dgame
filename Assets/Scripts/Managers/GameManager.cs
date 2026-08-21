@@ -8,11 +8,21 @@ public class GameManager : MonoBehaviour
     public Reel reel2;
     public Reel reel3;
 
+    // スロット画面
+    public GameObject slotGame;
+
     void Update()
     {
+        // Spaceキー → スロット開始
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             StartCoroutine(SlotStart());
+        }
+
+        // Shiftキー → スロット画面ON/OFF
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            slotGame.SetActive(!slotGame.activeSelf);
         }
     }
 
@@ -40,10 +50,10 @@ public class GameManager : MonoBehaviour
 
     void CheckResult()
     {
+        Sprite symbol1 = reel1.GetCurrentSymbol();
         Sprite symbol2 = reel2.GetCurrentSymbol();
         Sprite symbol3 = reel3.GetCurrentSymbol();
-        Sprite symbol1 = reel1.GetCurrentSymbol();
-    
+
         if (symbol1 == symbol2 && symbol2 == symbol3)
         {
             Debug.Log("🎉 当たり！");

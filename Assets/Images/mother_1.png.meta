@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 8f3440f6a55b84368a638dc3381e5347
+guid: de7128ba66f3b4daebc006e67ecabee9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4458911077431883261
-    second: Switch_Controller_LightGray_0
+      213: -2388948713237930300
+    second: mother_1_0
+  - first:
+      213: 7321693843247972024
+    second: mother_1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Switch_Controller_LightGray_0
+      name: mother_1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        x: 253
+        y: 942
+        width: 71
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df5b167200c31ed30800000000000000
-      internalID: 4458911077431883261
+      spriteID: 4ce93d07dcfb8ded0800000000000000
+      internalID: -2388948713237930300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mother_1_1
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 554
+        height: 1089
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8beb5f822c1eb9560800000000000000
+      internalID: 7321693843247972024
       vertices: []
       indices: 
       edges: []
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Switch_Controller_LightGray_0: 4458911077431883261
+      mother_1_0: -2388948713237930300
+      mother_1_1: 7321693843247972024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
