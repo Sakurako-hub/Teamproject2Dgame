@@ -31,15 +31,22 @@ public class GameManager : MonoBehaviour
     
     // 怒りレベルの最大値
     private int maxAngerLevel = 3;
+
+    // UI
+    public TMPro.TextMeshProUGUI angerText;
+    public TMPro.TextMeshProUGUI slotLvText;
     
 
     void Start()
     {
-        // ゲーム開始時は親を非表示
-        parentImage.SetActive(false);
+    // ゲーム開始時は親を非表示
+    parentImage.SetActive(false);
 
-        // 親が来る処理を開始
-        StartCoroutine(ParentRoutine());
+    // UIを初期表示
+    UpdateLevelUI();
+
+    // 親が来る処理を開始
+    StartCoroutine(ParentRoutine());
     }
 
 
@@ -161,11 +168,41 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // セーフ
-            slotLevel++;
-        
-            Debug.Log("⭕ セーフ！親に見つからなかった！");
-            Debug.Log("🎰 スロットLv：" + slotLevel);
+             // セーフ
+             slotLevel++;
+         
+             Debug.Log("⭕ セーフ！親に見つからなかった！");
+             Debug.Log("🎰 スロットLv：" + slotLevel);
         }
+
+        // UIを更新
+        UpdateLevelUI();
+
+    }
+
+    void UpdateLevelUI()
+    {
+        // 怒りゲージ
+        string angerGauge = "";
+    
+        for (int i = 0; i < 6; i++)
+        {
+            if (i < angerLevel)
+            {
+                angerGauge += "■";
+            }
+            else
+            {
+                angerGauge += "□";
+            }
+        }
+    
+        angerText.text = "😡 怒り：" + angerGauge;
+    
+    
+        // スロット当たり確率
+        int slotProbability = 20 + (slotLevel - 1) * 10;
+    
+        slotLvText.text = "🎰 SLOT 当たる確率 " + slotProbability + "%";
     }
 }
