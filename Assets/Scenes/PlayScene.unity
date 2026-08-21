@@ -688,6 +688,7 @@ MonoBehaviour:
   reel2: {fileID: 303371048}
   reel3: {fileID: 292397501}
   slotGame: {fileID: 1860847973}
+  parentImage: {fileID: 1558412459}
 --- !u!1001 &489286165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1279,7 +1280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1558412460
 RectTransform:
   m_ObjectHideFlags: 0

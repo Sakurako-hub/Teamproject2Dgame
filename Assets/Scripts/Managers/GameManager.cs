@@ -10,8 +10,38 @@ public class GameManager : MonoBehaviour
 
     // スロット画面
     public GameObject slotGame;
+
     // 親
     public GameObject parentImage;
+
+    // 親が来る回数
+    private int parentCount = 0;
+
+    // 親が来る最大回数
+    private int maxParentCount = 6;
+
+    // 親が来るまでの待ち時間
+    public float parentInterval = 20f;
+
+    // スロットのレベル
+    private int slotLevel = 1;
+    
+    // 親の怒りレベル
+    private int angerLevel = 0;
+    
+    // 怒りレベルの最大値
+    private int maxAngerLevel = 3;
+    
+
+    void Start()
+    {
+        // ゲーム開始時は親を非表示
+        parentImage.SetActive(false);
+
+        // 親が来る処理を開始
+        StartCoroutine(ParentRoutine());
+    }
+
 
     void Update()
     {
@@ -22,17 +52,22 @@ public class GameManager : MonoBehaviour
         }
 
         // Enterキー → スロット画面ON/OFF
-         if (Keyboard.current.enterKey.wasPressedThisFrame)
-         {
-             slotGame.SetActive(!slotGame.activeSelf);
-         }
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            slotGame.SetActive(!slotGame.activeSelf);
+        }
 
-         // Pキー → 親の表示ON/OFF（テスト用）
-         if (Keyboard.current.pKey.wasPressedThisFrame)
-         {
-             parentImage.SetActive(!parentImage.activeSelf);
-         }
+        // Pキー → 親の表示/非表示（テスト用）
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            parentImage.SetActive(!parentImage.activeSelf);
+        }
     }
+
+
+    // ==============================
+    // スロット
+    // ==============================
 
     IEnumerator SlotStart()
     {
@@ -53,8 +88,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         reel3.StopSpin();
 
+        // 結果判定
         CheckResult();
     }
+
 
     void CheckResult()
     {
@@ -69,6 +106,66 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("❌ ハズレ！");
+        }
+    }
+
+
+    // ==============================
+    // 親システム
+    // ==============================
+
+    IEnumerator ParentRoutine()
+    {
+        while (parentCount < maxParentCount)
+        {
+            // 次の親が来るまで待つ
+            yield return new WaitForSeconds(parentInterval);
+
+            // 親が来る回数を増やす
+            parentCount++;
+
+            Debug.Log("親が来る5秒前！");
+
+            // 5秒前のフェイント
+            yield return new WaitForSeconds(5f);
+
+            // 親が部屋に来る
+            ParentComing();
+        }
+
+        Debug.Log("親の登場回数6回終了！");
+    }
+
+
+    void ParentComing()
+    {
+        Debug.Log("👩 親が来た！");
+
+        // 親を表示
+        parentImage.SetActive(true);
+
+        // ゲーム画面が開いているか判定
+        if (slotGame.activeSelf)
+        {
+            // アウト
+            angerLevel++;
+        
+            Debug.Log("❌ アウト！親に見つかった！");
+            Debug.Log("親の怒りLv：" + angerLevel);
+        
+            // 怒りLvが最大になったらゲームオーバー
+            if (angerLevel >= maxAngerLevel)
+            {
+                Debug.Log("💥 GAME OVER！親の怒りがMAX！");
+            }
+        }
+        else
+        {
+            // セーフ
+            slotLevel++;
+        
+            Debug.Log("⭕ セーフ！親に見つからなかった！");
+            Debug.Log("🎰 スロットLv：" + slotLevel);
         }
     }
 }
