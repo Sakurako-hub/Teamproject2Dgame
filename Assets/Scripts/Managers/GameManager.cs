@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class GameManager : MonoBehaviour
 
     // 親
     public GameObject parentImage;
+
+    // 怒っている親の画像
+    public Image parentAngryImage;
+    public Sprite mother1;
+    public Sprite mother2;
+    public Sprite mother3;
 
     // 親が来る回数
     private int parentCount = 0;
@@ -39,21 +46,23 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-    // ゲーム開始時は親を非表示
-    parentImage.SetActive(false);
-
-    // UIを初期表示
-    UpdateLevelUI();
-
-    // 親が来る処理を開始
-    StartCoroutine(ParentRoutine());
+        // ゲーム開始時は親を非表示
+        parentImage.SetActive(false);
+        parentAngryImage.gameObject.SetActive(false);
+    
+        // UIを初期表示
+        UpdateLevelUI();
+    
+        // 親が来る処理を開始
+        StartCoroutine(ParentRoutine());
     }
-
-
+    
     void Update()
     {
         // Spaceキー → スロット開始
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        // Slot画面が表示されている時だけ動く
+        if (slotGame.activeSelf &&
+            Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             StartCoroutine(SlotStart());
         }
@@ -127,39 +136,63 @@ public class GameManager : MonoBehaviour
         {
             // 次の親が来るまで待つ
             yield return new WaitForSeconds(parentInterval);
-
-            // 親が来る回数を増やす
+    
             parentCount++;
-
+    
             Debug.Log("親が来る5秒前！");
-
-            // 5秒前のフェイント
+    
+            // ガラス越しに親を表示
+            parentImage.SetActive(true);
+    
+            // ここに後で足音SEを入れる！
+    
+            // 5秒待つ
             yield return new WaitForSeconds(5f);
-
+    
+            // ガラス越しの親を消す
+            parentImage.SetActive(false);
+    
             // 親が部屋に来る
             ParentComing();
+    
+            // 3秒間、親がいる
+            yield return new WaitForSeconds(3f);
+    
+            // 怒っている親を消す
+            parentAngryImage.gameObject.SetActive(false);
         }
-
+    
         Debug.Log("親の登場回数6回終了！");
     }
 
 
     void ParentComing()
     {
-        Debug.Log("👩 親が来た！");
-
-        // 親を表示
-        parentImage.SetActive(true);
-
+        Debug.Log("👩 親が部屋に来た！");
+    
         // ゲーム画面が開いているか判定
         if (slotGame.activeSelf)
         {
             // アウト
             angerLevel++;
-        
+    
             Debug.Log("❌ アウト！親に見つかった！");
             Debug.Log("親の怒りLv：" + angerLevel);
-        
+    
+            // 怒りレベルに応じて親の画像を変更
+            if (angerLevel <= 1)
+            {
+                parentAngryImage.sprite = mother1;
+            }
+            else if (angerLevel == 2)
+            {
+                parentAngryImage.sprite = mother2;
+            }
+            else
+            {
+                parentAngryImage.sprite = mother3;
+            }
+    
             // 怒りLvが最大になったらゲームオーバー
             if (angerLevel >= maxAngerLevel)
             {
@@ -168,16 +201,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-             // セーフ
-             slotLevel++;
-         
-             Debug.Log("⭕ セーフ！親に見つからなかった！");
-             Debug.Log("🎰 スロットLv：" + slotLevel);
+            // セーフ
+            slotLevel++;
+    
+            Debug.Log("⭕ セーフ！親に見つからなかった！");
+            Debug.Log("🎰 スロットLv：" + slotLevel);
         }
-
+    
+        // 怒っている親を表示
+        parentAngryImage.gameObject.SetActive(true);
+    
         // UIを更新
-        UpdateLevelUI();
-
+        UpdateLevelUI();    
     }
 
     void UpdateLevelUI()
@@ -197,12 +232,12 @@ public class GameManager : MonoBehaviour
             }
         }
     
-        angerText.text = "😡 怒り：" + angerGauge;
+        angerText.text = " 怒り：" + angerGauge;
     
     
         // スロット当たり確率
         int slotProbability = 20 + (slotLevel - 1) * 10;
     
-        slotLvText.text = "🎰 SLOT 当たる確率 " + slotProbability + "%";
+        slotLvText.text = "SLOT 当たる確率 " + slotProbability + "%";
     }
 }
