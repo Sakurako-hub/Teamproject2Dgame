@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
     
         // UIを初期表示
         UpdateLevelUI();
+        
+        // 親画像を初期設定
+        UpdateParentImage();
     
         // 親が来る処理を開始
         StartCoroutine(ParentRoutine());
@@ -173,25 +176,17 @@ public class GameManager : MonoBehaviour
         // ゲーム画面が開いているか判定
         if (slotGame.activeSelf)
         {
+            // =========================
             // アウト
+            // =========================
+    
             angerLevel++;
     
             Debug.Log("❌ アウト！親に見つかった！");
             Debug.Log("親の怒りLv：" + angerLevel);
     
-            // 怒りレベルに応じて親の画像を変更
-            if (angerLevel <= 1)
-            {
-                parentAngryImage.sprite = mother1;
-            }
-            else if (angerLevel == 2)
-            {
-                parentAngryImage.sprite = mother2;
-            }
-            else
-            {
-                parentAngryImage.sprite = mother3;
-            }
+            // 怒りLvに応じて親の画像を変更
+            UpdateParentImage();
     
             // 怒りLvが最大になったらゲームオーバー
             if (angerLevel >= maxAngerLevel)
@@ -201,18 +196,24 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // =========================
             // セーフ
+            // =========================
+    
             slotLevel++;
     
             Debug.Log("⭕ セーフ！親に見つからなかった！");
             Debug.Log("🎰 スロットLv：" + slotLevel);
+    
+            // セーフなので怒りLvは変えない
+            // 親の画像も変更しない
         }
     
         // 怒っている親を表示
         parentAngryImage.gameObject.SetActive(true);
     
         // UIを更新
-        UpdateLevelUI();    
+        UpdateLevelUI();
     }
 
     void UpdateLevelUI()
@@ -239,5 +240,24 @@ public class GameManager : MonoBehaviour
         int slotProbability = 20 + (slotLevel - 1) * 10;
     
         slotLvText.text = "SLOT 当たる確率 " + slotProbability + "%";
+    }
+
+     void UpdateParentImage()
+    {
+        if (angerLevel <= 1)
+        {
+            // 怒りLv 0～1
+            parentAngryImage.sprite = mother1;
+        }
+        else if (angerLevel == 2)
+        {
+            // 怒りLv 2
+            parentAngryImage.sprite = mother2;
+        }
+        else
+        {
+            // 怒りLv 3
+            parentAngryImage.sprite = mother3;
+        }
     }
 }

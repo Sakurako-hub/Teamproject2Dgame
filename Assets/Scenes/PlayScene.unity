@@ -1038,10 +1038,10 @@ MonoBehaviour:
   reel3: {fileID: 292397501}
   slotGame: {fileID: 1860847973}
   parentImage: {fileID: 1558412459}
-  parentAngryImage: {fileID: 0}
-  mother1: {fileID: 0}
-  mother2: {fileID: 0}
-  mother3: {fileID: 0}
+  parentAngryImage: {fileID: 241981959}
+  mother1: {fileID: 4362485133543873051, guid: 1a16b1ac7e5234b49a41f92073090833, type: 3}
+  mother2: {fileID: 8527830919227901815, guid: 0c6bd10c7b9da4b398fce9d96fef234e, type: 3}
+  mother3: {fileID: 8237694730436500580, guid: 0daec82efc4374a148079a30acba000c, type: 3}
   parentInterval: 20
   angerText: {fileID: 215644256}
   slotLvText: {fileID: 167582034}
@@ -1636,7 +1636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1558412460
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2035,7 +2035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1860847974
 Transform:
   m_ObjectHideFlags: 0
